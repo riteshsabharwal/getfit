@@ -1,5 +1,15 @@
 {
   "rewrites": [
+    { "source": "/api/notify", "destination": "/api/notify" },
+    { "source": "/api/habit", "destination": "/api/habit" },
     { "source": "/(.*)", "destination": "/Getfit.html" }
+  ],
+  "crons": [
+    { "path": "/api/notify?type=evening",    "schedule": "0 15 * * *"   },
+    { "path": "/api/notify?type=friday",     "schedule": "30 12 * * 5"  },
+    { "path": "/api/notify?type=monday",     "schedule": "30 2 * * 1"   },
+    { "path": "/api/notify?type=trend",      "schedule": "0 4 * * *"    },
+    { "path": "/api/notify?type=protein",    "schedule": "30 10 * * *"  },
+    { "path": "/api/notify?type=inactivity", "schedule": "0 3 * * *"    }
   ]
 }
