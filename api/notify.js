@@ -2,7 +2,7 @@
 // Vercel Serverless Function — runs on cron schedule
 // Sends smart, personalised health reminder emails to getfitritesh@gmail.com
 
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
@@ -178,7 +178,7 @@ async function inactivityAlert() {
 }
 
 // ── MAIN HANDLER ──
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { type } = req.query;
   try {
     switch (type) {

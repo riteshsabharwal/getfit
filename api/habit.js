@@ -3,11 +3,11 @@
 // Called when user taps Yes/No links in evening email
 // Logs sleep, meditation, and meal plan adherence to Supabase
 
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { date, habit, value } = req.query;
 
   if (!date || !habit || !value) {
