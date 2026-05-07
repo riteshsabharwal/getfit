@@ -7,7 +7,7 @@ const { createClient } = require('@supabase/supabase-js');
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const RESEND_KEY = process.env.RESEND_KEY;
-const TO_EMAIL = 'getfitritesh@gmail.com';
+const TO_EMAIL = 'riteshsabharwal@icloud.com';
 const FROM_EMAIL = 'GetFit <onboarding@resend.dev>';
 const APP_URL = 'https://getfit.riteshsabharwal.com';
 
