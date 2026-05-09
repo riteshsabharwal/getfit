@@ -445,7 +445,7 @@ let proteinItems = [];
 function checkPassword() {
   const v = document.getElementById('pwInput').value;
   if (v === APP_PASSWORD) {
-    sessionStorage.setItem('gf_ok', '1');
+    localStorage.setItem('gf_ok', '1');
     document.getElementById('lockScreen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     init();
@@ -456,7 +456,7 @@ function checkPassword() {
   }
 }
 document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
-if (sessionStorage.getItem('gf_ok')) {
+if (localStorage.getItem('gf_ok')) {
   document.getElementById('lockScreen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
 }
@@ -797,7 +797,7 @@ async function loadWeeklySummary() {
 }
 
 // Auto-start if already authenticated
-if (sessionStorage.getItem('gf_ok')) init();
+if (localStorage.getItem('gf_ok')) init();
 </script>
 </body>
 </html>
