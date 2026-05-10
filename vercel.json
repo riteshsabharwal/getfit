@@ -2,14 +2,23 @@
   "rewrites": [
     { "source": "/api/notify", "destination": "/api/notify" },
     { "source": "/api/habit", "destination": "/api/habit" },
+    { "source": "/api/test", "destination": "/api/test" },
     { "source": "/(.*)", "destination": "/Getfit.html" }
   ],
   "crons": [
-    { "path": "/api/notify?type=evening",    "schedule": "0 15 * * *"   },
-    { "path": "/api/notify?type=friday",     "schedule": "30 12 * * 5"  },
-    { "path": "/api/notify?type=monday",     "schedule": "30 2 * * 1"   },
-    { "path": "/api/notify?type=trend",      "schedule": "0 4 * * *"    },
-    { "path": "/api/notify?type=protein",    "schedule": "30 10 * * *"  },
-    { "path": "/api/notify?type=inactivity", "schedule": "0 3 * * *"    }
+    { "path": "/api/notify?type=morning_scale", "schedule": "45 1 * * *"  },
+    { "path": "/api/notify?type=meditation",    "schedule": "20 2 * * *"  },
+    { "path": "/api/notify?type=lumia",         "schedule": "30 3 * * 0"  },
+    { "path": "/api/notify?type=midday_water",  "schedule": "30 6 * * *"  },
+    { "path": "/api/notify?type=lunch",         "schedule": "30 8 * * *"  },
+    { "path": "/api/notify?type=afternoon",     "schedule": "0 11 * * *"  },
+    { "path": "/api/notify?type=evening_snack", "schedule": "0 12 * * *"  },
+    { "path": "/api/notify?type=dinner",        "schedule": "0 14 * * *"  },
+    { "path": "/api/notify?type=habits",        "schedule": "30 15 * * *" },
+    { "path": "/api/notify?type=sleep",         "schedule": "30 16 * * *" },
+    { "path": "/api/notify?type=friday",        "schedule": "30 12 * * 5" },
+    { "path": "/api/notify?type=monday",        "schedule": "30 2 * * 1"  },
+    { "path": "/api/notify?type=trend",         "schedule": "0 4 * * *"   },
+    { "path": "/api/notify?type=inactivity",    "schedule": "0 3 * * *"   }
   ]
 }

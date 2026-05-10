@@ -140,6 +140,8 @@
   #toast.show { transform: translateY(0); opacity: 1; }
 
   .weekend-alert { background: rgba(245,197,101,0.08); border: 1px solid rgba(245,197,101,0.3); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 0.875rem; color: var(--warn); line-height: 1.5; }
+
+  .habit-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--border);gap:1rem}.habit-row:last-child{border-bottom:none}.habit-info{display:flex;align-items:center;gap:0.75rem;flex:1}.habit-emoji{font-size:1.5rem;flex-shrink:0}.habit-label{font-size:0.875rem;color:var(--text);font-weight:500}.habit-sub{font-size:0.75rem;color:var(--muted);margin-top:0.15rem}.habit-btns{display:flex;gap:0.5rem;flex-shrink:0}.habit-yes{background:var(--accent);color:#0a0a0a;border:none;padding:0.4rem 1rem;border-radius:6px;font-weight:700;font-size:0.8rem;cursor:pointer}.habit-no{background:var(--surface2);color:var(--muted);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:6px;font-weight:600;font-size:0.8rem;cursor:pointer}.habit-no.selected{border-color:var(--danger);color:var(--danger)}.habit-yes.selected{box-shadow:0 0 0 2px #0a0a0a,0 0 0 4px var(--accent)}.habit-dot{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem}.habit-dot.yes{background:rgba(200,245,101,0.15);color:var(--accent)}.habit-dot.no{background:rgba(245,101,101,0.1);color:var(--danger)}.habit-dot.none{background:var(--surface2);color:var(--muted)}.habit-streak{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.5rem}.habit-history-row{margin-bottom:1.25rem}.habit-history-label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.4rem}
 </style>
 </head>
 <body>
@@ -173,6 +175,7 @@
     <button onclick="showPage('meals',this)">Meal Plan</button>
     <button onclick="showPage('history',this)">History</button>
     <button onclick="showPage('insights',this)">Insights</button>
+    <button onclick="showPage('habits',this)">Habits</button>
   </nav>
 
   <!-- DASHBOARD -->
@@ -426,6 +429,29 @@
   </div>
 </div>
 
+<div class="page" id="page-habits">
+  <div class="section-title">Daily Habits</div>
+  <div class="form-card">
+    <h3>Today's Check-in</h3>
+    <div class="habit-row" id="habit-sleep">
+      <div class="habit-info"><div class="habit-emoji">😴</div><div><div class="habit-label">Did you sleep well last night?</div><div class="habit-sub">7+ hours, good quality</div></div></div>
+      <div class="habit-btns"><button class="habit-yes" onclick="logHabit('sleep',true,this)">✓ Yes</button><button class="habit-no" onclick="logHabit('sleep',false,this)">✗ No</button></div>
+    </div>
+    <div class="habit-row" id="habit-meditate">
+      <div class="habit-info"><div class="habit-emoji">🧘</div><div><div class="habit-label">Did you meditate this morning?</div><div class="habit-sub">Even 10 minutes counts</div></div></div>
+      <div class="habit-btns"><button class="habit-yes" onclick="logHabit('meditate',true,this)">✓ Yes</button><button class="habit-no" onclick="logHabit('meditate',false,this)">✗ No</button></div>
+    </div>
+    <div class="habit-row" id="habit-meal">
+      <div class="habit-info"><div class="habit-emoji">🥗</div><div><div class="habit-label">Did you eat as per your meal plan?</div><div class="habit-sub">Followed the guidance</div></div></div>
+      <div class="habit-btns"><button class="habit-yes" onclick="logHabit('meal',true,this)">✓ Yes</button><button class="habit-no" onclick="logHabit('meal',false,this)">✗ No</button></div>
+    </div>
+  </div>
+  <div class="form-card">
+    <h3>Last 7 Days</h3>
+    <div id="habitHistory" style="font-size:0.875rem;color:var(--muted)">Loading...</div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
@@ -471,6 +497,7 @@ function showPage(id, btn) {
   if (id === 'insights') loadWeeklySummary();
   if (id === 'meals') renderMealPlan();
   if (id === 'protein') loadTodayProtein();
+  if (id === 'habits') loadHabitHistory();
 }
 
 function toast(msg) {
@@ -794,6 +821,44 @@ async function loadWeeklySummary() {
     Total lost vs start: <strong style="color:var(--accent)">${totalLost} kg</strong> (from 105.4 kg baseline)<br><br>
     <span style="color:var(--muted);font-size:0.85rem">💡 Tip: Weigh yourself every morning, same time, after bathroom, before eating. Weekly average matters more than daily fluctuations.</span>
   `;
+}
+
+async function logHabit(habit, value, btn) {
+  const update = { date: todayStr() };
+  update[habit] = value;
+  const { error } = await sb.from('habit_logs').upsert(update, { onConflict: 'date' });
+  if (error) { toast('Error: ' + error.message); return; }
+  const row = document.getElementById('habit-' + habit);
+  row.querySelectorAll('button').forEach(b => b.style.opacity = '0.4');
+  btn.style.opacity = '1';
+  btn.classList.add('selected');
+  toast(value ? '✓ Logged!' : 'Logged honestly — tomorrow is a new day.');
+  loadHabitHistory();
+}
+
+async function loadHabitHistory() {
+  const { data } = await sb.from('habit_logs').select('*').order('date', { ascending: false }).limit(7);
+  const el = document.getElementById('habitHistory');
+  if (!data || data.length === 0) { el.innerHTML = '<span style="color:var(--muted)">No habit logs yet. Start tonight.</span>'; return; }
+  const habits = [{ key:'sleep', label:'😴 Sleep' }, { key:'meditate', label:'🧘 Meditation' }, { key:'meal', label:'🥗 Meal Plan' }];
+  el.innerHTML = habits.map(h => {
+    const dots = data.map(row => { const val = row[h.key]; const cls = val===true?'yes':val===false?'no':'none'; const icon = val===true?'✓':val===false?'✗':'·'; return `<div class="habit-dot ${cls}">${icon}</div>`; }).join('');
+    const score = data.filter(r => r[h.key] === true).length;
+    return `<div class="habit-history-row"><div class="habit-history-label">${h.label} — ${score}/${data.length} days</div><div class="habit-streak">${dots}</div></div>`;
+  }).join('');
+  const today = todayStr();
+  const todayLog = data.find(r => r.date.split('T')[0] === today);
+  if (todayLog) {
+    ['sleep','meditate','meal'].forEach(habit => {
+      const val = todayLog[habit];
+      if (val === null || val === undefined) return;
+      const row = document.getElementById('habit-' + habit);
+      if (!row) return;
+      row.querySelectorAll('button').forEach(b => b.style.opacity = '0.4');
+      const target = val ? row.querySelector('.habit-yes') : row.querySelector('.habit-no');
+      if (target) { target.style.opacity = '1'; target.classList.add('selected'); }
+    });
+  }
 }
 
 // Auto-start if already authenticated
