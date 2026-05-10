@@ -8,7 +8,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const RESEND_KEY = process.env.RESEND_KEY;
 const TO_EMAIL = 'riteshsabharwal@icloud.com';
-const FROM_EMAIL = 'GetFit <onboarding@resend.dev>';
+const FROM_EMAIL = 'GetFit <getfit@riteshsabharwal.com>';
 const APP_URL = 'https://getfit.riteshsabharwal.com';
 
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
