@@ -18,7 +18,7 @@
     --accent: #c8f565;
     --accent2: #65c8f5;
     --text: #f0f0f0;
-    --muted: #666;
+    --muted: #999;
     --danger: #f56565;
     --warn: #f5c565;
   }
@@ -222,7 +222,7 @@
       <div class="chart-card" style="margin-bottom:0">
         <div class="section-title" style="font-size:1rem;margin-bottom:0.75rem">Today's Protein</div>
         <div class="protein-big" id="dashProtein">0g</div>
-        <div style="color:var(--muted);font-size:0.8rem;margin-top:0.2rem">of 130g daily target</div>
+        <div style="color:var(--muted);font-size:0.8rem;margin-top:0.2rem">of 140g daily target</div>
         <div class="protein-bar-wrap" style="margin-top:0.75rem">
           <div class="protein-bar" id="dashProteinBar" style="width:0%"></div>
         </div>
@@ -307,7 +307,7 @@
       <h3>Today's Protein Tracker</h3>
       <div style="margin-bottom:1.5rem">
         <div class="protein-big" id="proteinTotal">0g</div>
-        <div style="color:var(--muted);font-size:0.8rem;margin-top:0.2rem">of 130g daily target (~1.3g per kg body weight)</div>
+        <div style="color:var(--muted);font-size:0.8rem;margin-top:0.2rem">of 140g daily target (~1.4g per kg body weight at 99 kg)</div>
         <div class="protein-bar-wrap" style="margin-top:0.75rem">
           <div class="protein-bar" id="proteinBar" style="width:0%"></div>
         </div>
@@ -390,39 +390,43 @@
     </div>
 
     <div class="form-card">
-      <h3>From Your May 2025 Health Report</h3>
+      <h3>From Your June 2026 Health Report</h3>
       <div>
         <div class="insight-row">
-          <div class="insight-dot yellow"></div>
-          <div><div class="insight-label">Blood Pressure</div><div class="insight-text">140/90 mmHg — Stage 1 hypertension range. Reduce salt (use sendha namak), increase potassium. Every kg lost typically drops BP by 1 mmHg. Target below 130/80.</div></div>
+          <div class="insight-dot green"></div>
+          <div><div class="insight-label">Vitamin D</div><div class="insight-text">48.8 ng/mL — Now SUFFICIENT (up from 18.8, which was deficient). The Lumia 60K is working. Continue weekly dose + 15–20 min morning sunlight before 10am. Re-check in 6 months.</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot yellow"></div>
-          <div><div class="insight-label">HDL Cholesterol</div><div class="insight-text">42 mg/dl — Low-normal (desirable is ≥60). Exercise is already helping. Add omega-3s via fish 3x/week, walnuts, flaxseeds. Reduce refined carbs and alcohol.</div></div>
+          <div><div class="insight-label">Fasting Glucose</div><div class="insight-text">101 mg/dL — Just above normal (70–100). Not pre-diabetic but watch it closely. Reduce refined carbs at breakfast, avoid fruit juice, walk 15 mins after meals. HbA1c 4.7% remains excellent — keep it that way.</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot yellow"></div>
-          <div><div class="insight-label">LDL Cholesterol</div><div class="insight-text">110 mg/dl — Near-optimal (ideal &lt;100). Low cholesterol, high fibre diet as prescribed is correct. Follow-up lipid profile due in ~6 months from May 2025.</div></div>
+          <div><div class="insight-label">LDL Cholesterol</div><div class="insight-text">101.3 mg/dL — Improved from 110 mg/dL but just above the &lt;100 optimal target. Continue high-fibre, low-saturated-fat approach. HDL at 42 mg/dL — add walnuts, flaxseeds, fatty fish 3x/week. Next lipid check due Dec 2026.</div></div>
         </div>
         <div class="insight-row">
-          <div class="insight-dot red"></div>
-          <div><div class="insight-label">Vitamin D</div><div class="insight-text">18.8 ng/mL — Deficient (optimal 40–60 ng/mL). Lumia 60K as prescribed is essential. Also get 15–20 min morning sunlight before 10am.</div></div>
+          <div class="insight-dot yellow"></div>
+          <div><div class="insight-label">Blood Pressure</div><div class="insight-text">Previously 140/90 mmHg (Stage 1). TMT now shows Normal BP Response — weight loss is working. Continue low-sodium diet (sendha namak), high potassium foods. Every kg lost drops BP ~1 mmHg. Target below 130/80.</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot green"></div>
-          <div><div class="insight-label">Blood Sugar (HbA1c)</div><div class="insight-text">4.8% — Excellent. Well below pre-diabetes threshold. Continue low-sugar, high-fibre approach to protect this.</div></div>
+          <div><div class="insight-label">Heart (Echo + TMT)</div><div class="insight-text">Echo: LVEF 55%, normal cardiac chambers and valves, no significant abnormality. TMT: Negative for ischaemia, 13.3 METs achieved, good exercise tolerance, normal BP response. Heart is strong — keep exercising.</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot green"></div>
-          <div><div class="insight-label">Heart (Echo + TMT)</div><div class="insight-text">LVEF 60%, normal function, negative for ischaemia. Heart is healthy. Your exercise routine is working.</div></div>
+          <div><div class="insight-label">Thyroid</div><div class="insight-text">TSH 1.52, Free T3 4.34, Free T4 1.09 — all within normal range. Thyroid function is healthy. No action needed.</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot green"></div>
-          <div><div class="insight-label">Kidney & Liver</div><div class="insight-text">All parameters in range. Alkaline phosphatase marginally elevated (127 vs 125 max) — not concerning, worth watching on next check.</div></div>
+          <div><div class="insight-label">Kidney & Liver</div><div class="insight-text">Kidney: eGFR 97, Creatinine 1.0, BUN 13 — all excellent. Liver: ALP improved to 103 (was elevated). Bilirubin slightly above range (Total 1.49, Direct 0.50) — usually benign (hydration, fatty liver link). Monitor at next check. All other liver enzymes normal.</div></div>
+        </div>
+        <div class="insight-row">
+          <div class="insight-dot green"></div>
+          <div><div class="insight-label">Blood Sugar (HbA1c)</div><div class="insight-text">4.7% — Excellent, improved from 4.8%. Well below the pre-diabetes threshold of 5.7%. Continue low-sugar, high-fibre approach. Watch fasting glucose closely (see above).</div></div>
         </div>
         <div class="insight-row">
           <div class="insight-dot yellow"></div>
-          <div><div class="insight-label">BMI & Weight Goals</div><div class="insight-text">BMI 35.84 at baseline. First milestone: reach 88 kg (BMI ~30). Each 5 kg lost meaningfully improves BP, HDL, and energy. You've already done it before — this time build the systems to sustain it.</div></div>
+          <div><div class="insight-label">BMI & Weight Goals</div><div class="insight-text">BMI 33.7 at 99 kg — down from 35.84 at 105.4 kg. You've lost 6.4 kg. Next milestone: 90 kg (BMI ~30.6). Each 5 kg lost improves BP, HDL, insulin sensitivity, and energy. Keep the systems running.</div></div>
         </div>
       </div>
     </div>
@@ -460,7 +464,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const APP_PASSWORD = 'superritesh';
 const START_WEIGHT = 105.4;
 const GOAL_WEIGHT = 85;
-const PROTEIN_GOAL = 130;
+const PROTEIN_GOAL = 140;
 const HEIGHT_M = 1.715;
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -651,7 +655,7 @@ function renderProteinUI() {
   const rem = PROTEIN_GOAL - total;
   const st = document.getElementById('proteinStatus');
   if (total >= PROTEIN_GOAL) { st.textContent = '✓ Daily goal reached!'; st.style.color = 'var(--accent)'; }
-  else { st.textContent = rem + 'g more to reach 130g goal'; st.style.color = 'var(--muted)'; }
+  else { st.textContent = rem + 'g more to reach 140g goal'; st.style.color = 'var(--muted)'; }
   const logEl = document.getElementById('proteinLog');
   if (proteinItems.length === 0) { logEl.innerHTML = '<span style="color:var(--muted)">No items added yet</span>'; return; }
   logEl.innerHTML = proteinItems.map((item, i) =>

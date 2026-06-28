@@ -55,10 +55,10 @@ async function lunchReminder() {
 
 async function afternoonCheck() {
   const protein = await getProteinToday();
-  if (protein >= 100) {
+  if (protein >= 112) {
     await push('🚶 Afternoon movement check', `Protein: ${protein}g ✓ On track.\n\nNow get up and walk 10 minutes. Quick walk, then evening snack.`, 0, 'none');
   } else {
-    const needed = 130 - protein;
+    const needed = 140 - protein;
     await push(`🥩 Protein short — ${needed}g still needed`, `Only ${protein}g logged so far.\n\nEasy fix: whey shake (24g), paneer 100g (18g), chicken 100g (25g).\n\nAlso: get up and walk 10 mins.`, 0, 'none');
   }
 }
